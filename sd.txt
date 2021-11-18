@@ -1,0 +1,46 @@
+APP复习：
+monkey常用基本参数四种：-s,-p,-v,-throttle
+
+monkey发送的事件类型常用的有：-pct-touch ,-pct-motion ,-pct-trackball ,-pct-flip
+
+当只许跑某一个事件，只需取百分之百比率:adb shell monkey -p com.android.browser -pct-trackball 100 -v 100
+
+monkey调试参数:-ignore-crashes,-ignore-timeouts,-ignore-security-exceptions,-kill-process-after-error
+
+monkye常见报错：Crash（崩溃）,Exception（空指针异常）,Error,abrted（中止）,ANR(程序未响应）
+
+手机App如何监控内存：adb shell dumpsys meminfo packagename
+
+手机APP监控CPU：adb shell dumpsys | findstr packagename
+	             adb shell top | findstr packagebane       /    adb shell       top | grep packagename
+
+测试APP启动耗时：adb shell am start -W packagename/MainActivity
+
+获取系统日志：adb logcat
+
+APP耗电量测试：adb shell dumpsys batterystats
+
+APP闪退原因：手机内存不够
+	       内存泄漏
+	       权限问题
+	       弱网问题，服务端响应不及时
+	       不同APP间切换，交互测试，也可能回出现闪退
+
+APP监控流量：先获取应用的PID：adb shell ps | findstr packagename
+	       然后执行：adb shell cat/proc/PID/net/dev
+
+APP出现ANR的原因：一般是程序的UI线程响应超时
+
+APP出现Crash是什么原因：内存管理错误，程序逻辑错误，设备兼容，网络因素
+
+
+jmeter复习：
+简述Jmeter做性能测试：1.了解性能需求，搭建测试环境，录制脚本并进行压测，查看聚合报告
+		    2.通过jmeterplugins插件或jconsole工具监控内存及CPU
+		    3.在cmd窗口执行命令进行非GUI模式压测：jmeter -n -t 绝对路径 -l report.jtl(自定义的名称） -e -o 测试报告存放的路径
+		    4.性能测试主要分析响应时间，tps，吞吐量，内存，CPU
+
+Jmeter是apache组织开发的基于java的压测工具，用来做功能自动化/回归测试，接口功能测试，性能测试
+
+
+
